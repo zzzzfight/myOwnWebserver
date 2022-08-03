@@ -20,7 +20,7 @@ public:
 	bool isDeleted() const { return deleted_; }
 	void setDeleted() { deleted_ = true; }
 
-private:
+// private:
 	size_t expiredTime_;
 	std::shared_ptr<HttpData> ownHttp_;
 	bool deleted_;

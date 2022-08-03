@@ -65,15 +65,18 @@ HttpData::HttpData(EventLoop *loop, int fd)
 	ownchannel_->setReadCallback(std::bind(&HttpData::handleRead, this));
 	ownchannel_->setWriteCallback(std::bind(&HttpData::handleRead, this));
 	ownchannel_->setConnCallback(std::bind(&HttpData::handleConn, this));
+	// #test
+	std::cout << "new connect comming and acceptfd is:" << fd_ << std::endl;
+	// #endtest
 }
 
 void HttpData::handleRead()
 {
 	this->seperaterTimer();
-	{
-		std::cout << "httpdata use count:" << shared_from_this().use_count() << std::endl;
-		std::cout << "httpdata fd_:" << fd_ << std::endl;
-	}
+	// {
+	// 	std::cout << "httpdata use count:" << shared_from_this().use_count() << std::endl;
+	// 	std::cout << "httpdata fd_:" << fd_ << std::endl;
+	// }
 	do
 	{
 		bool eof = false;
@@ -288,9 +291,12 @@ void HttpData::reset()
 void HttpData::handleClose()
 {
 	// seperaterTimer();
+	std::cout << "Active close connection and curfd is:" << this->fd_ << std::endl;
 	connectionState_ = H_DISCONNECTED;
 	shared_ptr<HttpData> guard(shared_from_this());
 	ownloop_->removeChannel(ownchannel_);
+	// test
+	// endtest
 }
 
 void HttpData::newEvent()

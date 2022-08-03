@@ -39,10 +39,7 @@ void Acceptor::start()
 {
 	//线程开启初始化
 	eventLoopThreadPool_->threadPoolInit();
-	acceptChannel_->setReadCallback(std::bind(&Acceptor::handleNewConn, this));
-	acceptChannel_->setConnCallback(std::bind(&Acceptor::handleThisConn, this));
-	acceptChannel_->set_events(EPOLLIN | EPOLLET);
-	ownerloop_->addChannel(acceptChannel_);
+
 }
 
 void Acceptor::handleThisConn()
@@ -77,6 +74,10 @@ void Acceptor::handleNewConn()
 		newHttpConn->ownchannel_->setHolder(newHttpConn);
 
 		loop->queueInLoop(std::bind(&HttpData::newEvent, newHttpConn));
+
+		// #test
+		// std::cout << "new connect comming and newfd is:" << acceptFd << std::endl;
+		// #endtest
 	}
 	acceptChannel_->set_events(EPOLLIN | EPOLLET);
 }

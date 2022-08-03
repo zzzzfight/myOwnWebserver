@@ -39,6 +39,6 @@ void Channel::handleEvents()
 	if (connCallback_)
 		connCallback_();
 	eventHandling_ = false;
-	std::cout << "this->http_.use_count():" << this->http_.use_count() << std::endl;
+	// std::cout << "this->http_.use_count():" << this->http_.use_count() << std::endl;
 	return;
 }

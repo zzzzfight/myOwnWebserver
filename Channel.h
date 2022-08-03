@@ -15,7 +15,8 @@ public:
 	Channel(EventLoop *loop, int fd);
 	~Channel()
 	{
-		std::cout << "析构channel" << std::endl;
+		std::cout << "one channel obj has been destructed:" << this->fd_ << std::endl;
+		// std::cout << "析构channel" << std::endl;
 	}
 
 public:
@@ -48,6 +49,9 @@ public:
 
 	void set_events(uint32_t evt) { events_ = evt; }
 	void set_revents(uint32_t revt) { revents_ = revt; }
+
+	// uint32_t &events__() { return events_; }
+	// uint32_t &revents__() { return revents_; }
 
 	// uint32_t get_events(){return events_;}
 	std::shared_ptr<HttpData> getHolder()

@@ -28,7 +28,7 @@ void EPollPoller::poll(ChannelList *activeChannels, size_t timeout)
 	int numEvents = epoll_wait(epollfd_, events_, 1024, timeout);
 
 	int saveErrno = errno;
-	while (true)
+	while (false)
 	{
 		if (numEvents > 0)
 		{
@@ -127,8 +127,9 @@ void EPollPoller::fillActiveChannels(int numEvents, ChannelList *activeChannels)
 	{
 		int fd = events_[i].data.fd;
 
-		ChannelMap::const_iterator it = channels_.find(fd);
-		assert(it != channels_.end());
+		// // test
+		// 		ChannelMap::const_iterator it = channels_.find(fd);
+		// 		assert(it != channels_.end());
 
 		SP_Channel channel = channels_[fd];
 		channel->set_revents(events_[i].events);

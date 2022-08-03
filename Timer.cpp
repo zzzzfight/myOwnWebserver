@@ -6,7 +6,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#include<iostream>
+#include <iostream>
 #include <queue>
 
 TimerNode::TimerNode(std::shared_ptr<HttpData> &http, size_t timeout)
@@ -67,6 +67,7 @@ void Timer::handleExpiredEvent()
 		}
 		else if (!topNode->isVaild())
 		{
+			std::cout << "Passive close connection and curfd is:" << topNode->ownHttp_->fd_ << std::endl;
 			// std::cout << "有效删除\n";
 			timerNodeQueue.pop();
 		}

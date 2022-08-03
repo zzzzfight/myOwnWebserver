@@ -2,6 +2,9 @@
 // @Email 3161349290@qq.com
 #pragma once
 #include "Timer.h"
+
+#include "base/Util.h"
+
 class Channel;
 
 #include <string.h>
@@ -83,9 +86,11 @@ public:
 	HttpData(EventLoop *loop, int fd);
 	~HttpData()
 	{
-		std::cout << "析构httpdata" << std::endl;
-		std::cout << "fd_: " << fd_ << std::endl;
+		// std::cout << "析构httpdata" << std::endl;
+		// std::cout << "fd_: " << fd_ << std::endl;
+		cout << "one httpdata obj has been destructed:" << this->fd_ << std::endl;
 		close(fd_);
+		// close(fd_);
 	}
 
 	void handleRead();
@@ -103,7 +108,7 @@ public:
 
 	void seperaterTimer(); //从计时器中注销httpdata强指针的删除权
 
-private:
+	// private:
 	// epoll相关
 	int fd_;
 

@@ -6,7 +6,7 @@
 int main()
 {
 	EventLoop mainLoop;
-	Acceptor acceptor(&mainLoop, 1, 9006);
+	Acceptor acceptor(&mainLoop, 4, 9006);
 	acceptor.start();
 	mainLoop.loop();
 }

@@ -121,7 +121,7 @@ void EventLoop::runInLoop(Functor cb)
 
 void EventLoop::queueInLoop(Functor cb)
 {
-	std::cout << "new task\n";
+	// std::cout << "new task\n";
 
 	{
 		MutexLockGuard lock(mutex_);
